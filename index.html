@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gustavo Site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="video-container">
+        <video src="Assets/Vídeo/edição de vídeo.mp4" autoplay muted loop></video>
+        <div ></div>
+    </div>
+    <header class="flex-row">
+        <span>
+            Gustavo Pereira
+        </span>
+        <nav>
+            <ul class="flex-row">
+                <a href="#Sobre">Sobre</a>
+                <a href="#Skills">Por quê?</a>
+                <a href="#videos">Projetos</a>
+                <a href="#cta">Contato</a>
+            </ul>
+        </nav>
+    </header>
+    <section>
+      <div class="Nos">
+        <h2 id="Sobre">Sobre mim</h2>
+        <p>Sou Gustavo Gonçalves Pereira, editor de vídeo e estudante do IFSP Itapetininga. Trabalho com o DaVinci Resolve para transformar ideias em vídeos criativos, envolventes e com foco em resultado. Meu objetivo é entregar cortes dinâmicos, ritmo certo e identidade visual alinhada ao que cada cliente precisa — com seriedade, agilidade e visão estética.</p>
+      </div>
+    </section>
+    <h2 class="Why", id="Skills">Por que escolher meu trabalho?</h2>
+    <section class="Skills flex-row">
+      <div class="Ski">
+        <h2>Habilidades</h2>
+        <p>Atuo com edição de vídeo há quase 1 ano, utilizando o DaVinci Resolve como principal ferramenta. Tenho experiência com cortes rápidos para redes sociais, correção de cor, sincronização de áudio, legendas dinâmicas e montagem de vídeos promocionais ou institucionais. Busco sempre entregar um resultado com identidade visual forte, ritmo envolvente e adaptação ao objetivo do cliente, seja engajamento, branding ou apresentação profissional.</p>
+      </div>
+      <div class="YS">
+        <h2>Edição personalizada para o seu estilo</h2>
+        <p>Cada vídeo que edito é único. Eu adapto o ritmo, os efeitos, as transições e a narrativa visual ao que você realmente quer transmitir — seja algo comercial, emocional, dinâmico ou elegante. Aqui, você tem controle criativo. Eu só dou forma.</p>
+      </div>
+      <div class="Result">
+        <h2>Comprometido com o resultado</h2>
+        <p>Cada projeto é tratado com seriedade. Respeito prazos, entrego revisões com agilidade e foco no que realmente importa: um vídeo final que supere suas expectativas e gere resultado de verdade.</p>
+      </div>
+    </section>
+    <h2 class="Jobs", id="videos">Projetos</h2>
+    <div class="videos">
+      <video controls width="300" class="meu-video">
+        <source src="Assets/Vídeo/Massas.mp4" type="video/mp4">
+      </video>
+
+      <video controls width="300" class="meu-video">
+        <source src="Assets/Vídeo/Carretilha Avante Bg.mp4" type="video/mp4">
+      </video>
+
+      <video controls width="300" class="meu-video">
+        <source src="Assets/Vídeo/Dia Dos Namorados.mp4" type="video/mp4">
+      </video>
+    </div>
+    <script>
+      const videos = document.querySelectorAll(".meu-video");
+
+      videos.forEach(
+        video => {
+        video.addEventListener(
+          "play",
+          () => {
+          videos.forEach(v => {
+            if (v !== video) {
+              v.pause();
+            }
+          });
+        });
+      });
+    </script>
+    <p class="vd">Uso cortes dinâmicos, ajustes finos de cor e sincronização precisa com o áudio para entregar vídeos que prendem atenção e valorizam a mensagem. Tudo feito no DaVinci Resolve.</p>
+    <section class="cta", id="cta">
+      <h2>Entre em contato e vamos transformar sua ideia em vídeo!</h2>
+      <a href="https://wa.me/5515998538345" class="btn">Falar comigo no WhatsApp</a>
+    </section>
+    <h3 class="Powered">Powered by Gust</h3>
+</body>
+</html>
