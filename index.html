@@ -3,333 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gustavo Pereira | Editor de Vídeo</title>
+    <title>Proposta - Pesqueiro Pentágono</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            list-style: none;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --brown: #CFAE70;
+            --blue: #4A90E2;
+            --dark: #2C2C2C;
+            --light: #F8F8F8;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #ffffff;
-            background-color: #0a0a0a;
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
             overflow-x: hidden;
+            background: #fff;
         }
 
-        /* Hero Section com Video */
-        .hero {
-            position: relative;
-            height: 100vh;
+        .section {
+            min-height: 100vh;
+            padding: 100px 5%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Hero Section - Ultra Impactante */
+        .hero {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #CFAE70 100%);
+            position: relative;
             overflow: hidden;
         }
 
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.7) 100%);
-            z-index: 2;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        header.scrolled {
-            background: rgba(0, 0, 0, 0.95);
-            padding: 15px 50px;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ffb35c;
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 40px;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a::after {
+        .hero::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            top: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: #ffb35c;
-            transition: width 0.3s ease;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 90, 43, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
         }
 
-        nav a:hover::after {
-            width: 100%;
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
         }
 
-        /* Hero Content */
+        .wood-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(139, 90, 43, 0.05) 3px, rgba(139, 90, 43, 0.05) 6px),
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(139, 90, 43, 0.03) 50px, rgba(139, 90, 43, 0.03) 52px);
+            opacity: 0.4;
+        }
+
         .hero-content {
-            position: relative;
-            z-index: 3;
             text-align: center;
-            max-width: 800px;
-            padding: 20px;
+            z-index: 2;
+            max-width: 1000px;
             animation: fadeInUp 1s ease;
         }
 
-        .hero-content h1 {
-            font-size: 56px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffb35c 0%, #ff8c42 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content p {
-            font-size: 22px;
-            margin-bottom: 30px;
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #ffb35c 0%, #ff8c42 100%);
-            color: #000;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 179, 92, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 179, 92, 0.5);
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 42px;
-            text-align: center;
-            margin-bottom: 60px;
-            color: #ffb35c;
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #ffb35c, #ff8c42);
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-text h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #ffb35c;
-        }
-
-        .about-text p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #d0d0d0;
-            text-align: justify;
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-
-        .profile-placeholder {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #ffb35c 0%, #ff8c42 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            box-shadow: 0 20px 60px rgba(255, 179, 92, 0.3);
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 179, 92, 0.1);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 179, 92, 0.1);
-            border-color: rgba(255, 179, 92, 0.3);
-            box-shadow: 0 20px 60px rgba(255, 179, 92, 0.2);
-        }
-
-        .skill-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #0061b1;
-        }
-
-        .skill-card p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #c0c0c0;
-            text-align: justify;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .project-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 20px 60px rgba(255, 179, 92, 0.3);
-        }
-
-        .project-card video {
-            width: 100%;
-            display: block;
-            border-radius: 20px;
-        }
-
-        .project-description {
-            text-align: center;
-            margin-top: 60px;
-            padding: 0 20px;
-        }
-
-        .project-description p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #d0d0d0;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: justify;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
-            background: linear-gradient(135deg, rgba(255, 179, 92, 0.1) 0%, rgba(255, 140, 66, 0.1) 100%);
-            padding: 80px 50px;
-            border-radius: 30px;
-            margin: 50px;
-        }
-
-        .contact-section h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: #ffffff;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.5);
-            color: #888;
-            font-size: 14px;
-        }
-
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -337,163 +92,965 @@
             }
         }
 
-        /* Responsive */
+        .logo-area {
+            margin-bottom: 40px;
+        }
+
+        .logo-circle {
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 15px;
+        }
+
+        .hero .author {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            padding: 12px 30px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 50px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-arrow {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 2.5rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-15px); }
+            60% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--brown));
+            border-radius: 10px;
+        }
+
+        /* Sobre */
+        .about {
+            background: linear-gradient(180deg, #fff 0%, var(--light) 100%);
+        }
+
+        .about-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.4rem;
+            line-height: 2;
+            color: #555;
+            font-weight: 300;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Serviços */
+        .services {
+            background: #fff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #fff 0%, var(--light) 100%);
+            padding: 50px 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--brown));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.25);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            filter: grayscale(0.3);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Rotina */
+        .routine {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--brown) 100%);
+            position: relative;
+        }
+
+        .routine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .routine .section-title {
+            color: #fff;
+        }
+
+        .schedule {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-card {
+            background: rgba(255,255,255,0.98);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 30px;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideIn 0.5s forwards;
+        }
+
+        .day-card:nth-child(1) { animation-delay: 0.1s; }
+        .day-card:nth-child(2) { animation-delay: 0.2s; }
+        .day-card:nth-child(3) { animation-delay: 0.3s; }
+        .day-card:nth-child(4) { animation-delay: 0.4s; }
+        .day-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .day-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .day-badge {
+            background: linear-gradient(135deg, var(--gold), var(--brown));
+            color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .day-content h4 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .day-content p {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Resultados */
+        .results {
+            background: linear-gradient(180deg, var(--light) 0%, #fff 100%);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%);
+            padding: 50px 30px;
+            border-radius: 25px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .result-box:hover::before {
+            opacity: 1;
+            transform: translate(25%, 25%);
+        }
+
+        .result-box:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(255, 215, 0, 0.4);
+        }
+
+        .result-icon {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .result-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .result-box p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* Identidade Visual */
+        .identity {
+            background: #fff;
+        }
+
+        .identity-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .identity-text {
+            font-size: 1.3rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .colors-display {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .color-item {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .color-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .color-circle {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .color-item:hover .color-circle {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        }
+
+        .color-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .color-code {
+            font-family: 'Courier New', monospace;
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        /* Ações Futuras */
+        .future {
+            background: linear-gradient(180deg, var(--light) 0%, #fff 100%);
+        }
+
+        .ideas-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .idea-box {
+            background: #fff;
+            padding: 35px;
+            border-radius: 20px;
+            border-left: 6px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .idea-box:hover {
+            border-left-width: 10px;
+            transform: translateX(5px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .idea-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .idea-icon {
+            font-size: 2.5rem;
+        }
+
+        .idea-box h3 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .idea-box p {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Contato */
+        .contact {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+            color: #fff;
+        }
+
+        .contact .section-title {
+            color: var(--gold);
+        }
+
+        .contact-wrapper {
+            max-width: 700px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--brown));
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+        }
+
+        .contact h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .contact .role {
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.3rem;
+            margin: 20px 0;
+        }
+
+        .contact-item span {
+            font-size: 1.8rem;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: #25D366;
+            color: #fff;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-icon {
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1rem;
+        }
+
+        /* Responsivo */
         @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            nav ul {
-                gap: 20px;
-                font-size: 14px;
-            }
-
-            .hero-content h1 {
-                font-size: 36px;
-            }
-
-            .hero-content p {
-                font-size: 18px;
-            }
-
-            section {
-                padding: 60px 20px;
+            .hero .subtitle {
+                font-size: 1.3rem;
             }
 
             .section-title {
-                font-size: 32px;
+                font-size: 2.5rem;
             }
 
-            .about-content {
-                gap: 30px;
+            .section {
+                padding: 60px 5%;
             }
 
-            .projects-grid {
+            .day-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .services-grid,
+            .ideas-container {
                 grid-template-columns: 1fr;
             }
 
-            .logo {
-                font-size: 20px;
+            .color-circle {
+                width: 110px;
+                height: 110px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="logo">Gustavo Pereira</div>
-        <nav>
-            <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#skills">Por quê?</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="Assets/Vídeo/edição de vídeo.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
+    <!-- Hero -->
+    <section class="section hero">
+        <div class="wood-texture"></div>
         <div class="hero-content">
-            <h1>Editor de Vídeo Criativo</h1>
-            <p>Transformando ideias em vídeos envolventes que geram resultado</p>
-            <a href="#projetos" class="cta-button">Ver Projetos</a>
+            <div class="logo-area">
+                <div class="logo-circle">🎣</div>
+            </div>
+            <h1>Proposta de Gestão<br>de Mídias Sociais</h1>
+            <p class="subtitle">Pesqueiro Pentágono – São Miguel Arcanjo</p>
+            <p class="author">Gustavo Gonçalves Pereira · Social Mídia</p>
         </div>
-    </div>
+        <div class="scroll-arrow">↓</div>
+    </section>
 
-    <!-- About Section -->
-    <section id="sobre">
-        <h2 class="section-title">Sobre Mim</h2>
-        <div class="about-content">
-            <div class="about-text">
+    <!-- Sobre -->
+    <section class="section about">
+        <div class="container">
+            <h2 class="section-title">Sobre o Projeto</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    Esta proposta apresenta um <span class="highlight">planejamento estratégico completo</span> para transformar as mídias sociais do Pesqueiro Pentágono em uma poderosa ferramenta de marketing digital. Com foco em <span class="highlight">conteúdo autêntico, engajamento consistente e resultados mensuráveis</span>, vamos construir uma presença digital marcante que atrai clientes e fortalece a marca na região de São Miguel Arcanjo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="section services">
+        <div class="container">
+            <h2 class="section-title">Serviços Incluídos</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Gestão Completa</h3>
+                    <p>Administração profissional do Instagram e Facebook com monitoramento diário, estratégias personalizadas e otimização contínua</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📸</div>
+                    <h3>Produção de Conteúdo</h3>
+                    <p>20 posts mensais com fotografia profissional, copywriting persuasivo e design alinhado à identidade visual</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎬</div>
+                    <h3>Stories Diários</h3>
+                    <p>Conteúdo dinâmico e autêntico para manter o engajamento alto e criar conexão com o público todos os dias</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Design Premium</h3>
+                    <p>Identidade visual única e consistente que destaca o Pesqueiro Pentágono e transmite profissionalismo</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Relatórios Mensais</h3>
+                    <p>Análise detalhada com métricas de alcance, engajamento, crescimento e insights para tomada de decisão</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3>Atendimento Digital</h3>
+                    <p>Resposta ágil a mensagens e comentários para garantir excelência no relacionamento com clientes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rotina -->
+    <section class="section routine">
+        <div class="container">
+            <h2 class="section-title">Rotina de Trabalho</h2>
+            <div class="schedule">
+                <div class="day-card">
+                    <div class="day-badge">Segunda-feira</div>
+                    <div class="day-content">
+                        <h4>Planejamento Estratégico</h4>
+                        <p>Definição de pautas semanais, análise de tendências e agendamento estratégico de conteúdos</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <div class="day-badge">Terça-feira</div>
+                    <div class="day-content">
+                        <h4>Criação de Conteúdo</h4>
+                        <p>Produção de posts, edição de fotos e vídeos, desenvolvimento de textos e design gráfico</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <div class="day-badge">Quarta-feira</div>
+                    <div class="day-content">
+                        <h4>Publicação & Engajamento</h4>
+                        <p>Postagens programadas, interação com seguidores e monitoramento de comentários</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <div class="day-badge">Quinta-feira</div>
+                    <div class="day-content">
+                        <h4>Stories & Reels</h4>
+                        <p>Conteúdo dinâmico em vídeo para maximizar alcance orgânico e viralização</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <div class="day-badge">Sexta-feira</div>
+                    <div class="day-content">
+                        <h4>Análise & Otimização</h4>
+                        <p>Monitoramento de métricas, identificação de oportunidades e ajustes na estratégia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resultados -->
+    <section class="section results">
+        <div class="container">
+            <h2 class="section-title">Resultados Esperados</h2>
+            <div class="results-grid">
+                <div class="result-box">
+                    <span class="result-icon">📈</span>
+                    <h3>Crescimento Orgânico</h3>
+                    <p>Aumento significativo de seguidores qualificados e alcance exponencial das publicações</p>
+                </div>
+                <div class="result-box">
+                    <span class="result-icon">💎</span>
+                    <h3>Branding Forte</h3>
+                    <p>Identidade visual marcante e posicionamento claro no mercado regional</p>
+                </div>
+                <div class="result-box">
+                    <span class="result-icon">👥</span>
+                    <h3>Engajamento Alto</h3>
+                    <p>Comunidade ativa, interações constantes e relacionamento duradouro com clientes</p>
+                </div>
+                <div class="result-box">
+                    <span class="result-icon">🎯</span>
+                    <h3>Conversão Real</h3>
+                    <p>Transformação de seguidores em visitantes frequentes e clientes fidelizados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Identidade -->
+    <section class="section identity">
+        <div class="container">
+            <h2 class="section-title">Identidade Visual</h2>
+            <div class="identity-content">
+                <p class="identity-text">
+                    A paleta de cores foi estrategicamente escolhida para representar a essência do Pesqueiro Pentágono: o amarelo ouro evoca o sol e a alegria do lazer ao ar livre, enquanto os tons terrosos remetem à natureza e tranquilidade. O azul lago completa a harmonia, trazendo frescor e conexão com a água.
+                </p>
+            </div>
+            <div class="colors-display">
+                <div class="color-item">
+                    <div class="color-circle" style="background: #FFD700; color: #fff;">☀️</div>
+                    <div class="color-name">Amarelo Ouro</div>
+                    <div class="color-code">#FFD700</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-circle" style="background: #CFAE70; color: #fff;">🌾</div>
+                    <div class="color-name">Marrom Claro</div>
+                    <div class="color-code">#CFAE70</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-circle" style="background: #FFFFFF; color: #333; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">☁️</div>
+                    <div class="color-name">Branco Puro</div>
+                    <div class="color-code">#FFFFFF</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-circle" style="background: #4A90E2; color: #fff;">🌊</div>
+                    <div class="color-name">Azul Lago</div>
+                    <div class="color-code">#4A90E2</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Futuro -->
+    <section class="section future">
+        <div class="container">
+            <h2 class="section-title">Ações Futuras</h2>
+            <div class="ideas-container">
+                <div class="idea-box">
+                    <div class="idea-header">
+                        <span class="idea-icon">💡</span>
+                        <h3>Campanhas Promocionais</h3>
+                    </div>
+                    <p>Promoções estratégicas para datas comemorativas, fins de semana e períodos de baixa demanda para maximizar o movimento</p>
+                </div>
+                <div class="idea-box">
+                    <div class="idea-header">
+                        <span class="idea-icon">🚀</span>
+                        <h3>Parcerias Estratégicas</h3>
+                    </div>
+                    <p>Colaborações com influenciadores locais, estabelecimentos da região e marcas para ampliar o alcance</p>
+                </div>
+                <div class="idea-box">
+                    <div class="idea-header">
+                        <span class="idea-icon">🎪</span>
+                        <h3>Eventos Temáticos</h3>
+                    </div>
+                    <p>Organização de torneios de pesca, eventos familiares e experiências exclusivas que geram conteúdo viral</p>
+                </div>
+                <div class="idea-box">
+                    <div class="idea-header">
+                        <span class="idea-icon">📹</span>
+                        <h3>Conteúdo em Vídeo</h3>
+                    </div>
+                    <p>Produção de vídeos institucionais, tutoriais de pesca, bastidores e depoimentos de clientes satisfeitos</p>
+                </div>
+                <div class="idea-box">
+                    <div class="idea-header">
+                        <span class="idea-icon">🎁</span>
+                        <h3>Programa de Fidelidade</h3>
+                    </div>
+                    <p>Sistema de recompensas digital para clientes frequentes com benefícios exclusivos e vantagens especiais</p>
+                </div>
+                <div class="idea-box">
+                    <div class="idea-header">
+                        <span class="idea-icon">⭐</span>
+                        <h3>Gestão de Reputação</h3>
+                    </div>
+                    <p>Compartilhamento de avaliações positivas, depoimentos reais e cases de sucesso para fortalecer a credibilidade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investimento -->
+    <section class="section investment" style="background: linear-gradient(180deg, #fff 0%, var(--light) 100%);">
+        <div class="container">
+            <h2 class="section-title">Investimento</h2>
+            <div class="pricing-wrapper" style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <div class="price-card" style="background: linear-gradient(135deg, var(--gold) 0%, #FFA500 100%); padding: 60px 50px; border-radius: 30px; box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3); color: #fff; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%;"></div>
+                    <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: rgba(0,0,0,0.1); border-radius: 50%;"></div>
+                    
+                    <div style="position: relative; z-index: 1;">
+                        <p style="font-size: 1.2rem; font-weight: 300; margin-bottom: 20px; opacity: 0.95;">Pacote Completo Mensal</p>
+                        <div style="margin: 30px 0;">
+                            <span style="font-size: 1.8rem; font-weight: 300;">R$</span>
+                            <span style="font-size: 5rem; font-weight: 800; line-height: 1;">2.500</span>
+                            <span style="font-size: 1.5rem; font-weight: 300;">/mês</span>
+                        </div>
+                        
+                        <div style="background: rgba(255,255,255,0.2); padding: 25px; border-radius: 15px; margin: 30px 0; backdrop-filter: blur(10px);">
+                            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 15px;">✓ Gestão completa Instagram e Facebook</p>
+                            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 15px;">✓ 20 posts profissionais mensais</p>
+                            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 15px;">✓ Stories diários</p>
+                            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 15px;">✓ Design personalizado</p>
+                            <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 15px;">✓ Relatórios mensais</p>
+                            <p style="font-size: 1.15rem; line-height: 1.8;">✓ Suporte contínuo</p>
+                        </div>
+
+                        <div style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 15px; margin-top: 25px;">
+                            <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 5px;">💬 Podemos Negociar!</p>
+                            <p style="font-size: 1rem; opacity: 0.9;">Estou aberto a conversar sobre valores e condições</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="section contact">
+        <div class="container">
+            <h2 class="section-title">Vamos Conversar?</h2>
+            <div class="contact-wrapper">
+                <div class="profile-img">👨‍💼</div>
                 <h3>Gustavo Gonçalves Pereira</h3>
-                <p>Sou editor de vídeo e estudante do IFSP Itapetininga. Trabalho com o DaVinci Resolve para transformar ideias em vídeos criativos, envolventes e com foco em resultado. Meu objetivo é entregar cortes dinâmicos, ritmo certo e identidade visual alinhada ao que cada cliente precisa — com seriedade, agilidade e visão estética.</p>
-            </div>
-            <div class="about-image">
-                <div class="profile-placeholder">🎬</div>
+                <p class="role">Social Mídia & Gestor de Conteúdo Digital</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>(15) 99853-8345</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>gustpereira15@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>São Miguel Arcanjo, SP</span>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5515998538345?text=Olá%20Gustavo!%20Vi%20sua%20proposta%20para%20o%20Pesqueiro%20Pentágono%20e%20gostaria%20de%20conversar%20sobre%20os%20valores." class="whatsapp-button" target="_blank">
+                    <span class="whatsapp-icon">💬</span>
+                    <span>Fale Comigo no WhatsApp</span>
+                </a>
             </div>
         </div>
     </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Por que escolher meu trabalho?</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Habilidades Técnicas</h3>
-                <p>Atuo com edição de vídeo há quase 1 ano, utilizando o DaVinci Resolve como principal ferramenta. Tenho experiência com cortes rápidos para redes sociais, correção de cor, sincronização de áudio, legendas dinâmicas e montagem de vídeos promocionais ou institucionais.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Edição Personalizada</h3>
-                <p>Cada vídeo que edito é único. Eu adapto o ritmo, os efeitos, as transições e a narrativa visual ao que você realmente quer transmitir — seja algo comercial, emocional, dinâmico ou elegante. Aqui, você tem controle criativo.</p>
-            </div>
-            <div class="skill-card">
-                <h3>Comprometimento</h3>
-                <p>Cada projeto é tratado com seriedade. Respeito prazos, entrego revisões com agilidade e foco no que realmente importa: um vídeo final que supere suas expectativas e gere resultado de verdade.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projetos">
-        <h2 class="section-title">Meus Projetos</h2>
-        <div class="project-description">
-            <p>Uso cortes dinâmicos, ajustes finos de cor e sincronização precisa com o áudio para entregar vídeos que prendem atenção e valorizam a mensagem. Tudo feito no DaVinci Resolve.</p>
-            <p style="margin-top: 30px; font-size: 20px; color: #ffb35c;">Em breve, novos projetos serão adicionados aqui! 🎬</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <div class="contact-section" id="contato">
-        <h2>Entre em contato e vamos transformar sua ideia em vídeo!</h2>
-        <a href="https://wa.me/5515998538345" class="cta-button">Falar comigo no WhatsApp</a>
-    </div>
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Gustavo Pereira | Powered by Gust</p>
+        <p>© 2025 Gustavo Gonçalves Pereira – Social Mídia Profissional</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Transformando mídias sociais em resultados reais</p>
     </footer>
 
     <script>
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        // Animação de scroll suave
+        const sections = document.querySelectorAll('.section');
+        
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach((section, index) => {
+            if (index > 0) {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'all 1s ease';
+                observer.observe(section);
             }
         });
 
-        // Video pause logic
-        const videos = document.querySelectorAll('.project-video');
-        videos.forEach(video => {
-            video.addEventListener('play', () => {
-                videos.forEach(v => {
-                    if (v !== video) {
-                        v.pause();
-                    }
-                });
+        // Scroll suave ao clicar na seta
+        document.querySelector('.scroll-arrow').addEventListener('click', () => {
+            document.querySelector('.about').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Efeito parallax suave no hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
+            }
+        });
+
+        // Animação dos cards ao passar o mouse
+        const cards = document.querySelectorAll('.service-card, .idea-box, .result-box');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             });
         });
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Contador animado para números (se adicionar métricas)
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
                 }
-            });
-        });
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Efeito de digitação no título (opcional)
+        const heroTitle = document.querySelector('.hero h1');
+        if (heroTitle) {
+            heroTitle.style.opacity = '1';
+        }
     </script>
 </body>
 </html>
